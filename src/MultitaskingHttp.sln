@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultitaskingHttp.Subscriber", "MultitaskingHttp.Subscriber\MultitaskingHttp.Subscriber.csproj", "{86B1676A-7AB1-41FB-B7F9-8BB621644087}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultitaskingHttp.Publisher", "MultitaskingHttp.Publisher\MultitaskingHttp.Publisher.csproj", "{EC5CB787-2121-481B-811A-73940DFF83E6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Debug|iPhone.Build.0 = Debug|iPhone
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Release|iPhone.ActiveCfg = Release|iPhone
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Release|iPhone.Build.0 = Release|iPhone
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{86B1676A-7AB1-41FB-B7F9-8BB621644087}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Debug|iPhone.Build.0 = Debug|iPhone
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Release|iPhone.ActiveCfg = Release|iPhone
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Release|iPhone.Build.0 = Release|iPhone
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{EC5CB787-2121-481B-811A-73940DFF83E6}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MultitaskingHttp.Subscriber\MultitaskingHttp.Subscriber.csproj
+	EndGlobalSection
+EndGlobal

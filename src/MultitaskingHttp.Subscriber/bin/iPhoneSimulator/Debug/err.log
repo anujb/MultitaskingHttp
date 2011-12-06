@@ -1,0 +1,2 @@
+Socket error while connecting to 127.0.0.1 on port 10001: Connection refused
+objc[42103]: Object 0x9923560 of class __NSCFSet autoreleased with no pool in place - just leaking - break on objc_autoreleaseNoPool() to debug
