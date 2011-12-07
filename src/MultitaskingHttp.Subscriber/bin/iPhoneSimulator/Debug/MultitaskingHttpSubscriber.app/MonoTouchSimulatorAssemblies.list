@@ -1,5 +1,7 @@
 Mono.Security.dll
+ServiceStack.Text.dll
 System.Core.dll
+System.Runtime.Serialization.dll
 System.Xml.dll
 System.dll
 mscorlib.dll

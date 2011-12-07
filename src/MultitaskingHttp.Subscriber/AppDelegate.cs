@@ -27,6 +27,7 @@ namespace MultitaskingHttp.Subscriber
 	{
 		UIWindow _Window;
 		RootViewController _RootViewController;
+		
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{	
 			_Window = new UIWindow(UIScreen.MainScreen.Bounds);
@@ -35,14 +36,14 @@ namespace MultitaskingHttp.Subscriber
 			_Window.RootViewController = new UIViewController();
 			_Window.MakeKeyAndVisible();
 			
-			HttpService.Initialize();
+			HttpServer.Initialize();
 			
 			return true;
 		}
 		
 		public override void DidEnterBackground(UIApplication application)
 		{
-			Console.WriteLine("Entering Background State.");
+			Console.WriteLine("Entered Background State...");
 			
 			var taskId = UIApplication.SharedApplication.BeginBackgroundTask(() => { });
 			
@@ -55,29 +56,28 @@ namespace MultitaskingHttp.Subscriber
 		
 		public override void WillEnterForeground(UIApplication application)
 		{
-			Console.WriteLine("Entering Active State.");
-			
 			var result = NSUserDefaults.StandardUserDefaults.StringForKey("last_backgrounded");
-			Console.WriteLine("Last Backgrounded: {0}", result);
+			Console.WriteLine("Resuming state from: {0}", result);
 			
-			var request = NSUserDefaults.StandardUserDefaults.StringForKey("last_request");
-			Console.WriteLine("Last Request: {0}", request);
+			//So now that we're back we probably don't want anyone sending us data!
+			//So lets stop the service!
 			
-			HttpService.Stop();
+			HttpServer.Stop();
 		}
 		
 		public void RegisterBackgroundHttpServer(UIApplication application, int taskId)
 		{
-			if(HttpService.IsInitialized == false) {
-				HttpService.Initialize();
+			if(HttpServer.IsInitialized == false) {
+				HttpServer.Initialize();
 			}
 			
-			HttpService.Start();
+			HttpServer.Start();
 		
 			NSUserDefaults.StandardUserDefaults.SetString(DateTime.Now.ToString(), "last_backgrounded");
 			NSUserDefaults.StandardUserDefaults.Synchronize();
 			
-			Thread.Sleep(TimeSpan.FromMinutes(3));
+			// As per Apple docs ew can go up to 600 seconds here, but this is not guaranteed.
+			Thread.Sleep(TimeSpan.FromSeconds(300));
 		
 			UIApplication.SharedApplication.EndBackgroundTask(taskId);
 		}

@@ -32,51 +32,9 @@
 			<key>DefaultValue</key>
 			<string>automatic</string>
 			<key>Key</key>
-			<string>__monotouch_debug_host</string>
+			<string>__monodevelop_host</string>
 			<key>Title</key>
-			<string>Debugger Host</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string>10000</string>
-			<key>Key</key>
-			<string>__monotouch_debug_port</string>
-			<key>Title</key>
-			<string>Debugger Port</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string>10001</string>
-			<key>Key</key>
-			<string>__monotouch_output_port</string>
-			<key>Title</key>
-			<string>Output Port</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string>10002</string>
-			<key>Key</key>
-			<string>__monotouch_heapshot_port</string>
-			<key>Title</key>
-			<string>HeapShot Port</string>
+			<string>MonoDevelop Host</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 		</dict>

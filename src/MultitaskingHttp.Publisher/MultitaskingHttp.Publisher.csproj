@@ -80,5 +80,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="ViewControllers\" />
+    <Folder Include="Model\" />
   </ItemGroup>
 </Project>

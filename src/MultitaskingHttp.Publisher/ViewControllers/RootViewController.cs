@@ -41,12 +41,17 @@ namespace MultitaskingHttp.Publisher
 			var button = UIButton.FromType(UIButtonType.RoundedRect);
 			button.Frame = new System.Drawing.RectangleF(25, 150, View.Frame.Width - 50, 55);
 			button.SetTitle("Send Request!", UIControlState.Normal);
+			
+			var x = new RestRequest("");
+			x.Timeout = 5;
+			
 			button.TouchUpInside += delegate {
 				
 				try {
 				
 					var client = new RestClient(@"http://127.0.0.1:30001/");
 					var req = new RestRequest("");
+					
 					
 					var response = client.Execute(req);
 					

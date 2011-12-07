@@ -60,6 +60,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\lib\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoTouch.Dialog">
+      <HintPath>..\..\lib\MonoTouch.Dialog.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -68,11 +74,13 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ViewControllers\RootViewController.cs" />
-    <Compile Include="Http\HttpService.cs" />
+    <Compile Include="Http\HttpServer.cs" />
+    <Compile Include="Model\Customer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="ViewControllers\" />
     <Folder Include="Http\" />
+    <Folder Include="Model\" />
   </ItemGroup>
 </Project>
