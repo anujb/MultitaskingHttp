@@ -13,33 +13,14 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 using System;
-using MonoTouch.UIKit;
 
-
-namespace MultitaskingHttp.Subscriber
+namespace MultitaskingHttp.Publisher
 {
-	public class RootViewController : UINavigationController
+	public class Customer
 	{
-		public RootViewController()
-			: base()
-		{
-		}
-		
-		public override void LoadView()
-		{
-			base.LoadView();
-			
-		}
-		
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
-		}
-		
-		protected override void Dispose(bool disposing)
-		{
-			base.Dispose(disposing);
-		}
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public string Address { get; set; }
 	}
 }
 

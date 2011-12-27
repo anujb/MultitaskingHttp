@@ -1,29 +1,44 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MultitaskingHttp.Subscriber/AppDelegate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MultitaskingHttp.Subscriber/ViewControllers/CustomerViewController.cs">
     <Files>
-      <File FileName="MultitaskingHttp.Subscriber/AppDelegate.cs" Line="40" Column="16" />
-      <File FileName="MultitaskingHttp.Subscriber/Main.cs" Line="1" Column="1" />
-      <File FileName="MultitaskingHttp.Subscriber/ViewControllers/RootViewController.cs" Line="1" Column="1" />
-      <File FileName="MultitaskingHttp.Subscriber/Http/HttpService.cs" Line="1" Column="1" />
+      <File FileName="MultitaskingHttp.Publisher/ViewControllers/RootViewController.cs" Line="77" Column="41" />
+      <File FileName="MultitaskingHttp.Subscriber/AppDelegate.cs" Line="34" Column="38" />
+      <File FileName="MultitaskingHttp.Subscriber/Http/HttpServer.cs" Line="78" Column="40" />
+      <File FileName="MultitaskingHttp.Publisher/Main.cs" Line="1" Column="1" />
+      <File FileName="MultitaskingHttp.Subscriber/ViewControllers/CustomerViewController.cs" Line="64" Column="25" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="MultitaskingHttp.Publisher" expanded="True" />
-          <Node name="MultitaskingHttp.Subscriber" expanded="True" selected="True">
-            <Node name="Http" expanded="True" />
+          <Node name="MultitaskingHttp.Publisher" expanded="True">
+            <Node name="References" expanded="True" />
+            <Node name="Model" expanded="True" />
             <Node name="ViewControllers" expanded="True" />
           </Node>
+          <Node name="MultitaskingHttp.Subscriber" expanded="True">
+            <Node name="Http" expanded="True" />
+            <Node name="Model" expanded="True" />
+            <Node name="ViewControllers" expanded="True">
+              <Node name="CustomerViewController.cs" selected="True" />
+            </Node>
+          </Node>
+          <Node name="ServiceStack.Text.MonoTouch" expanded="True" />
         </State>
       </Pad>
       <Pad Id="ClassPad">
         <State expanded="True" selected="True" />
       </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/abhatia/projects/monotouch/playground/MultitaskingHttp/src/MultitaskingHttp.Publisher/ViewControllers/RootViewController.cs" line="76" />
+      <Breakpoint file="/Users/abhatia/projects/monotouch/playground/MultitaskingHttp/src/MultitaskingHttp.Subscriber/ViewControllers/CustomerViewController.cs" line="64" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

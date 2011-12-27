@@ -15,21 +15,32 @@
 using System;
 using MonoTouch.UIKit;
 using RestSharp;
+using ServiceStack.Text;
+using MonoTouch.Foundation;
 
 namespace MultitaskingHttp.Publisher
 {
-	public class RootViewController : UINavigationController
+	public class RootViewController : UIViewController
 	{
+		private static Random _Random;
+		private static RestClient _Client = new RestClient("http://127.0.0.1:30001/");
+		
+		public string[] Names = { "Bob", "Mary", "Steve", "Bill", "Chad", "BABA ANUJ", "Thad", "Miguel", "Scott" };
 		public UILabel _ResponseLabel { get; set; }
+		
+		
 		
 		public RootViewController()
 			: base()
 		{
+			_Random = new Random(233092);
 		}
 		
 		public override void LoadView()
 		{
 			base.LoadView();
+			
+			this.View.BackgroundColor = UIColor.White;
 			
 			_ResponseLabel = new UILabel();
 			_ResponseLabel.Text = "Click to send Request";
@@ -40,24 +51,35 @@ namespace MultitaskingHttp.Publisher
 			
 			var button = UIButton.FromType(UIButtonType.RoundedRect);
 			button.Frame = new System.Drawing.RectangleF(25, 150, View.Frame.Width - 50, 55);
-			button.SetTitle("Send Request!", UIControlState.Normal);
+			button.SetTitle("Add Customer!", UIControlState.Normal);
 			
-			var x = new RestRequest("");
-			x.Timeout = 5;
 			
 			button.TouchUpInside += delegate {
 				
 				try {
-				
-					var client = new RestClient(@"http://127.0.0.1:30001/");
-					var req = new RestRequest("");
+					var req = new RestRequest("", Method.PUT);
+					req.Timeout = (int)TimeSpan.FromSeconds(5).TotalMilliseconds;
+					
+					var customer = new Customer {
+						Id = _Random.Next(1, 100),
+						Name = Names[_Random.Next(0, 8)],
+						Address = string.Format(@"{0} FARFLUFFLE on {1} STREET", _Random.Next(1, 1000), _Random.Next(1, 100)),
+					};
+					var body = JsonSerializer.SerializeToString<Customer>(customer);
+					Console.WriteLine(body);
+					req.AddParameter("body", body, ParameterType.RequestBody);
+					
+					var response = _Client.Execute(req);
+					Console.WriteLine("Response -- Code: {0} -- Content: {1} -- Error: {2}", response.StatusCode, response.Content, response.ErrorMessage);
 					
 					
-					var response = client.Execute(req);
+					using(var pool = new NSAutoreleasePool()) {
+						pool.BeginInvokeOnMainThread(()=>{
+							_ResponseLabel.Text = response.StatusCode == System.Net.HttpStatusCode.OK ? response.Content : "No Response from Server...";
+						});
+					}
 					
-					Console.WriteLine(response.Content);
 					
-					_ResponseLabel.Text = string.IsNullOrWhiteSpace(response.Content) ? "No Content..." : response.Content;
 					
 				} catch (Exception ex) {
 					Console.WriteLine(ex);

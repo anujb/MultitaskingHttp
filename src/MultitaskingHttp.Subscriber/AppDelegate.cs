@@ -26,14 +26,14 @@ namespace MultitaskingHttp.Subscriber
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow _Window;
-		RootViewController _RootViewController;
+		CustomerViewController _RootViewController;
 		
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{	
 			_Window = new UIWindow(UIScreen.MainScreen.Bounds);
-			_RootViewController = new RootViewController();
+			_RootViewController = new CustomerViewController();
 			
-			_Window.RootViewController = new UIViewController();
+			_Window.RootViewController = _RootViewController;
 			_Window.MakeKeyAndVisible();
 			
 			HttpServer.Initialize();
@@ -56,8 +56,10 @@ namespace MultitaskingHttp.Subscriber
 		
 		public override void WillEnterForeground(UIApplication application)
 		{
-			var result = NSUserDefaults.StandardUserDefaults.StringForKey("last_backgrounded");
-			Console.WriteLine("Resuming state from: {0}", result);
+			var lastbackgrounded = NSUserDefaults.StandardUserDefaults.StringForKey("last_backgrounded");
+			var lastrequest = NSUserDefaults.StandardUserDefaults.StringForKey("last_request");
+			Console.WriteLine("Resuming state from: {0}", lastbackgrounded);
+			Console.WriteLine("Last Request from: {0}", lastrequest);
 			
 			//So now that we're back we probably don't want anyone sending us data!
 			//So lets stop the service!

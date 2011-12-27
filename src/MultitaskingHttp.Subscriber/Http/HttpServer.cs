@@ -27,6 +27,8 @@ namespace MultitaskingHttp.Subscriber
 		public static HttpListener Listener;
 		public static bool IsInitialized { get; private set; }
 		public static bool IsListening { get { return Listener.IsListening; } }
+		
+		static List<Customer> Customers = new List<Customer> {};
 
 		public static void Initialize()
 		{
@@ -57,51 +59,59 @@ namespace MultitaskingHttp.Subscriber
 		{
 			var context = Listener.EndGetContext(result);
 			
-			if(context.Request.RawUrl.ToLower().Contains("customer")) {
-				HandleCustomersRequest(context);
-			}
+			HandleCustomersRequest(context);
 			
 			Listener.BeginGetContext(new AsyncCallback(HandleHttpRequest), Listener);
 		}
 		
 		public static void HandleCustomersRequest(HttpListenerContext context)
 		{
-			if(context == null) {
-				return;
-			}
-			
-			var customers = new List<Customer> { };
-			var json = NSUserDefaults.StandardUserDefaults.StringForKey("customers");
-			
-			if(string.IsNullOrWhiteSpace(json) == false) {
-				var result = JsonSerializer.DeserializeFromString<IEnumerable<Customer>>(json);
-				customers.AddRange(result);
-			}
-			
-			if(context.Request.HttpMethod.Equals("GET", StringComparison.OrdinalIgnoreCase)) {
-				SendResponse(context, HttpStatusCode.OK, json);
-				return;
-			}
-			else if(context.Request.HttpMethod.Equals("PUT", StringComparison.OrdinalIgnoreCase)) {
-				var customer = JsonSerializer.DeserializeFromStream<Customer>(context.Request.InputStream);
+			try {
 				
-				var result = SaveCustomer(customers, customer);
-				SendResponse(context, result ? HttpStatusCode.OK : HttpStatusCode.InternalServerError, string.Empty);
-				return;
+				NSUserDefaults.StandardUserDefaults.SetString(DateTime.Now.ToString(), "last_request");
+				
+				if(context == null) {
+					SendResponse(context, HttpStatusCode.BadRequest, string.Empty);
+					return;
+				}
+				
+				Customers = new List<Customer> { };
+				var json = NSUserDefaults.StandardUserDefaults.StringForKey("customers");
+				
+				if(string.IsNullOrWhiteSpace(json) == false) {
+					var result = JsonSerializer.DeserializeFromString<IEnumerable<Customer>>(json);
+					Customers.AddRange(result);
+				}
+				
+				if(context.Request.HttpMethod.Equals("GET", StringComparison.OrdinalIgnoreCase)) {
+					SendResponse(context, HttpStatusCode.OK, json);
+					return;
+				}
+				else if(context.Request.HttpMethod.Equals("PUT", StringComparison.OrdinalIgnoreCase)) {
+					var customer = JsonSerializer.DeserializeFromStream<Customer>(context.Request.InputStream);
+					
+					var result = SaveCustomer(customer);
+					SendResponse(context, result ? HttpStatusCode.OK : HttpStatusCode.InternalServerError, "Added New Customer...Bazinga!");
+					return;
+				}
+				else {
+					SendResponse(context, HttpStatusCode.BadRequest, string.Empty);	
+				}
+				
+			} catch (Exception ex) {
+				Console.WriteLine("Exception...Message -- {0} StackTrace: {1}", ex.Message, ex.StackTrace);
 			}
-			
-			SendResponse(context, HttpStatusCode.BadRequest, string.Empty);
 		}
 					
-		private static bool SaveCustomer(List<Customer> customers, Customer newCustomer)
+		private static bool SaveCustomer(Customer newCustomer)
 		{
 			if(newCustomer == null && newCustomer == default(Customer)) {
 				return false;
 			}
 			
-			customers.Add(newCustomer);
+			Customers.Add(newCustomer);
 			
-			var json = JsonSerializer.SerializeToString<IEnumerable<Customer>>(customers);
+			var json = JsonSerializer.SerializeToString<IEnumerable<Customer>>(Customers);
 			
 			NSUserDefaults.StandardUserDefaults.SetString(json, "customers");
 			

@@ -1,6 +1,9 @@
 Mono.Security.dll
+MonoTouch.Dialog.dll
 RestSharp.MonoTouch.dll
+ServiceStack.Text.dll
 System.Core.dll
+System.Runtime.Serialization.dll
 System.Xml.Linq.dll
 System.Xml.dll
 System.dll

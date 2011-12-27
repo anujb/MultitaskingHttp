@@ -20,8 +20,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n />
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -45,6 +46,9 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName />
     <MtouchI18n />
+    <MtouchExtraArgs>-v -v -v</MtouchExtraArgs>
+    <MtouchSdkVersion>5.0</MtouchSdkVersion>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -60,9 +64,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\..\lib\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="MonoTouch.Dialog">
       <HintPath>..\..\lib\MonoTouch.Dialog.dll</HintPath>
     </Reference>
@@ -73,14 +74,20 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewControllers\RootViewController.cs" />
     <Compile Include="Http\HttpServer.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="ViewControllers\CustomerViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="ViewControllers\" />
     <Folder Include="Http\" />
     <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceStack.Text\src\ServiceStack.Text\ServiceStack.Text.MonoTouch.csproj">
+      <Project>{662AE06C-08DC-11E1-9759-BBBFD35946CCGUID@}</Project>
+      <Name>ServiceStack.Text.MonoTouch</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
